@@ -3,6 +3,7 @@ import base64
 from datetime import datetime
 import os
 import shutil
+import cv2
 
 import numpy as np
 import socketio
@@ -22,32 +23,6 @@ model = None
 prev_image_array = None
 
 
-class SimplePIController:
-    def __init__(self, Kp, Ki):
-        self.Kp = Kp
-        self.Ki = Ki
-        self.set_point = 0.
-        self.error = 0.
-        self.integral = 0.
-
-    def set_desired(self, desired):
-        self.set_point = desired
-
-    def update(self, measurement):
-        # proportional error
-        self.error = self.set_point - measurement
-
-        # integral error
-        self.integral += self.error
-
-        return self.Kp * self.error + self.Ki * self.integral
-
-
-controller = SimplePIController(0.1, 0.002)
-set_speed = 9
-controller.set_desired(set_speed)
-
-
 @sio.on('telemetry')
 def telemetry(sid, data):
     if data:
@@ -61,9 +36,16 @@ def telemetry(sid, data):
         imgString = data["image"]
         image = Image.open(BytesIO(base64.b64decode(imgString)))
         image_array = np.asarray(image)
-        steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
-
-        throttle = controller.update(float(speed))
+        image1 = cv2.resize(image_array, dsize=(160,80))
+        steering_angle = float(model.predict(image1[None, :, :, :], batch_size=1))
+        min_speed = 12
+        max_speed = 24
+        if float(speed) < min_speed:
+            throttle = 1.0
+        elif float(speed) > max_speed:
+            throttle = -1.0
+        else:
+            throttle = 0.2
 
         print(steering_angle, throttle)
         send_control(steering_angle, throttle)
@@ -117,7 +99,7 @@ if __name__ == '__main__':
 
     if model_version != keras_version:
         print('You are using Keras version ', keras_version,
-              ', but the model was built using ', model_version)
+            ', but the model was built using ', model_version)
 
     model = load_model(args.model)
 
