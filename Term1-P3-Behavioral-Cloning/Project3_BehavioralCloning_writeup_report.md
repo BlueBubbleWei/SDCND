@@ -25,12 +25,12 @@ The goals / steps taken to completed this Project are as follows:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py :- This is the script created to train the model
@@ -38,43 +38,43 @@ My project includes the following files:
 * model.h5 :- This file has the data which represents trained convolution neural network 
 * writeup_report.md :- Summarizes the results
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
 
 For details about how I created the training data, see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 ### Design is embeded into the script model.py
 The part of the model.py file that contains the code for creating, training and saving the Keras model starts in line 643. The lines before define a number of helper functions that are part of the overall training pipeline: An `assemble_filelists()` function to assemble lists of the available training data from the drive_log.csv file that the simulator creates when recording driving data, a `generate_batch()` generator function used by Keras' `fit_generator()` function to train the model, and a bunch of image transformation functions that are used by the generator to do ad-hoc data augmentation during training.
@@ -93,7 +93,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The architecture of the final model is as follows (model.py):
 * RGB image input with dimensions 80x160x3
@@ -107,7 +107,7 @@ The architecture of the final model is as follows (model.py):
 
 The visualization of the architecture was mentioned as optional according to the project rubric so didn't include a image here.
 
-####3. Creation of the Training Set & Training Process
+####  3. Creation of the Training Set & Training Process
 
 ### Data Collection-Preprocessing
 The simulator records image data from three cameras, one center camera and one camera on each the far left and right sides of the car, recording 10 images per second. The images from the two non-center cameras simulate the effect of the car being too far left or too far right in the lane and by adding or subtracting an appropriate offset to/from the respective center camera steering angle, one can effectively produce artificial recovery data.
@@ -142,27 +142,27 @@ I tested the following image transformations:
 
 Here is an example of some of these transformations. The original image for comparison (steering angle == 0.00):
 
-![image1](/examples/00_original.png)
+![image1](/writeup_images/00_original.png)
 
 Translated horizontally by 30 pixels (steering angle == -0.09):
 
-![image2](/examples/01_translate.png)
+![image2](/writeup_images/01_translate.png)
 
 Perspective transform to simulate a left turn / orientation of the car to the right edge of the lane (steering angle == -0.32):
 
-![image3](/examples/02_curvature.png)
+![image3](/writeup_images/02_curvature.png)
 
 Perspective transform to simulate a downhill road (steering angle == 0.00):
 
-![image4](/examples/03_incline_down.png)
+![image4](/writeup_images/03_incline_down.png)
 
 Perspective transform to simulate an uphill road (steering angle == 0.00):
 
-![image5](/examples/04_incline_up.png)
+![image5](/writeup_images/04_incline_up.png)
 
 Horizontal flip (steering angle == -0.00):
 
-![image6](/examples/05_flip.png)
+![image6](/writeup_images/05_flip.png)
 
 Results of my data augmentation experiments:
 
@@ -194,30 +194,13 @@ With some data augmentation it was possible to get the model to drive well on bo
 
 Unsurprisingly, trying to get the model to work on the very different and much more challenging jungle track while training it only on the lake track date was unsuccessful. However, even after training it on jungle track data I initially had difficulties getting it to drive on that track. I anticipated that sharp turns would be an issue, but those didn't cause any problems. There were three other leading causes of failure in my training results - see the images below. The first were sudden downhill parts where a sharp edge marks the end of the visible road before it goes downhill and the car cannot see early enough what comes after. This problem was sometimes exacerbated by the second leading cause of failure, unrelated road stretches on the horizon creating the optical illusion of being the continuations of the road the car is currently on, leading the model to follow the road stretch on the horizon rather than the road it was on. The third leading cause of failure were the two directly adjacent road stretches at the start of the track. The road is completely straight there, but my model initially still had difficulties staying straight, it always wanted to pull over to the other side of the road. It took recording a bunch of extra data on this stretch at the start to get this problem under control.
 
-Here are illustrations of these difficulties:
-
-![Sudden downhill part](/examples/issue02_downhill.png)
-
-The car can't see what lies ahead - and it's a sharp right turn. Exacerbating this, the left lane marking of the road is continued by the left lane marking of the distant road stretch on the horizon. The model might take this as a cue to drive straight.
-
-![Misleading road stretch on the horizon](/examples/issue03_misleading.png)
-
-The road makes a sharp right turn, but there is also a straight stretch on the horizon, creating the illusion of a fork in the road.
-
-![Adjacent roads](/examples/issue04_adjacent.png)
-
-These two adjacent road stretches have nothing to do with each other, but the model had a lot of difficulties to tell which is the correct one to drive on. Initially it constantly tried to pull over to the other side of the road.
-
-In order to teach the model to drive on the jungle track, but at the same time not forget how to drive on the lake track, I took a model that was already able to drive well on the lake track (which had been trained for 6 epochs) and trained it for 2 additional epochs on the entire combined training dataset (45,000 images for the lake track plus 36,000 images for the jungle track, minus 10% of that for the validation data). This turned out to be enough to get the model to drive well on both tracks.
-
 Even though it was a problem initially on the jungle track when I didn't limit car's speed, because it would get too fast downhill and miss immediately consecutive turns, surprisingly I managed to get it to a point where it can run laps on the jungle track even without any speed limitation if the default throttle is set to 0.2. I still modified the drive.py to ensure a minimum speed of 12 mph (because otherwise watching the car drive on the jungle track is tedious) and a maximum of 24 mph so that the car drives more smoothly. Feel free to remove the max speed though - the driving will be less clean, but it will still work.
 
 ### Training Results
 
 Watch the trained model drive autonomously on the lake track that it has been trained on (click on the image to watch the video):
 
-[![01_Lake_Track]()
-
+[![01_Lake_Track ]()
 
 Need for Improvement of Model: Model was able to drive on the Lake Track in good way.The model couldn't drive the car on the jungle track, and it cuts some turns too closely.
 
