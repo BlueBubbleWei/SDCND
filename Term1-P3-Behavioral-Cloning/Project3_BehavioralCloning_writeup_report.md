@@ -1,6 +1,6 @@
-#**Behavioral Cloning Project**
+# **Behavioral Cloning Project**
 
-##Writeup - Submitted by Deepak Mane
+### Writeup - Submitted by Deepak Mane
 
 ---
 
