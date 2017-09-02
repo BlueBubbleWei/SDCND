@@ -31,8 +31,9 @@ The goals / steps taken to completed this Project are as follows:
 ---
 ### Required Files
 
-### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
-[Are all required files submitted?]
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
+
+* Are all required files submitted?]
 
 SPECIFICATION : My project includes the following files:
 * model.py :- This is the script created to train the model
@@ -41,16 +42,13 @@ SPECIFICATION : My project includes the following files:
 * writeup_report.md :- Summarizes the results
 
 ### Quality of Code
-
+#### 2. Submission includes functional code
 * Is the code functional?	
-
-SPECIFICATION : The model provided can be used to successfully operate the simulation.
-
-### 2. Submission includes functional code
-
-* Is the code usable and readable?	The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
+* Is the code usable and readable?
 
 SPECIFICATION : 
+
+The model provided can be used to successfully operate the simulation.The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
@@ -70,14 +68,11 @@ SPECIFICATION :
 
 #### An appropriate model architecture has been employed
 
-Design is embeded into the script model.py
-The part of the model.py file that contains the code for creating, training and saving the Keras model starts in line 643. The lines before define a number of helper functions that are part of the overall training pipeline: An `assemble_filelists()` function to assemble lists of the available training data from the drive_log.csv file that the simulator creates when recording driving data, a `generate_batch()` generator function used by Keras' `fit_generator()` function to train the model, and a bunch of image transformation functions that are used by the generator to do ad-hoc data augmentation during training.
-
 I trained modified version of [this](https://github.com/commaai/research/blob/master/train_steering_model.py) Comma.ai model. Instead of trying multiple architectures I choose Comma.ai model and decided to train it well enough to make the car driving successfully on track one. Architecure plays a important role so having read on many other I decided to proced with below 
 
 Instead of following the conv layers with max pooling layers I used a convolutional stride greater than 1, namely 4 for the first conv layer and 2 for the second and third conv layers. I didn't do this because I had good theoretical reasons for it, but because the Comma.ai model that my model is based on did it this way and I considered it an experiment to see if it would produce good results. Intuitively, reducing complexity through pooling should be superior over reducing complexity by increasing the stride in the conv layers, since the former method chooses the most relevant information out of all possible filter positions, while the latter method loses information by skipping part of the possible filter positions to begin with. In practice, however, it seems to work well enough.
 
-### Attempt been made to reduce overfitting of the model
+#### Attempt been made to reduce overfitting of the model
 Along with proper architectures, the data you collect and the data augmentation techniques you apply are also equally crucial. To make the first run the car on track one it took quite a while and the majority of efforts where spend on the collection and processing of the training data rather than parameter tunning of the  model.
 
 Batch normalization helps reduce overfitting, so tried removing the dropout layers.Did not encounter signs of overfitting in general, even without the dropout layers.
@@ -112,8 +107,35 @@ The images from the two non-center cameras unsurprisingly turned out to be very 
 
 Of course non-center camera images are just two specific cases of horizontal translation, and as will be described in the next section, I applied horizontal translation randomly to the entire training dataset to generate many more different viewpoints.
 
+### Architecture and Training Documentation
 
-#### Data Augmentation
+* Is the solution design documented?	The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
+* Is the model architecture documented?	The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged.
+* Is the creation of the training dataset and training process documented?	The README describes how the model was trained and what the characteristics of the dataset are. Information such as how the dataset was generated and examples of images from the dataset must be included.
+
+SPECIFICATION : 
+
+#### Solution Design is embeded into the script model.py
+The part of the model.py file that contains the code for creating, training and saving the Keras model starts in line 643. The lines before define a number of helper functions that are part of the overall training pipeline: An `assemble_filelists()` function to assemble lists of the available training data from the drive_log.csv file that the simulator creates when recording driving data, a `generate_batch()` generator function used by Keras' `fit_generator()` function to train the model, and a bunch of image transformation functions that are used by the generator to do ad-hoc data augmentation during training.
+
+#### Final Model Architecture Documentation
+
+The architecture of the final model is as follows (model.py):
+* RGB image input with dimensions 80x160x3
+* Keras Cropping2D layer to crop the input to 50x150 pixels
+* Keras Lambda layer to convert the feature value range to [-1,1]
+* Three convolutional layers with 32, 64, and 128 filters, filter sizes 8x8, 5x5, and 3x3, and strides 4, 2, and 2.
+* One dense layer with 512 units following the convolutional layers, and one output unit
+* ELUs as nonlinearities after each layer except the output unit
+* Batch normalization after each layer except the output unit
+* Dropout after the third conv and first dense layer (both rate 0.5)
+
+The visualization of the architecture was mentioned as optional according to the project rubric so didn't include a image here.
+
+#### Creation of the training dataset and training process 
+
+* Data Augmentation
+
 Data augmentation is essential to solve this problem, training on data of good driving behavior alone will not result in a working model. At the same time data augmentation is also more complex in this case than in a classification task, since for many relevant transformations of the input data, the corresponding labels need to be adjusted in a non-trivial way. A bear is a bear whether you flip the image or not, but the steering angle of the perspectively distorted image of a road might need to be adjusted in a non-obvious way. Figuring out how exactly to adjust the steering angle for some transformations turns into a project of its own, and a lot of work goes into it. Below I describe the transformations I experimented with and my findings regarding which transformations worked or didn't work, which were useful or unnecessary, and what steering angle adjustments turned out to work well.
 
 I tested the following image transformations:
@@ -125,7 +147,7 @@ I tested the following image transformations:
 
 Here is an example of some of these transformations. The original image for comparison (steering angle == 0.00):
 
-![image1](/writeup_images/00_original.png)
+![image1](./writeup_images/00_original.png)
 
 Translated horizontally by 30 pixels (steering angle == -0.09):
 
@@ -149,8 +171,8 @@ Horizontal flip (steering angle == -0.00):
 
 Results of my data augmentation experiments:
 
-* Horizontal flipping: This one is a no-brainer - unsurprisingly it helps a lot and should always be applied (randomly to half of your data).
-* Changing the brightness: It had exactly the desired effect. Thanks to decreasing the brightness of the lake track images, the model was able to drive on the much darker mountain track without ever having seen it during training. Depending on the training iteration, I randomly varied the brightness of 10-50% of the images between factor 0.4 and 1.5 of the original brightness.
+* Horizontal flipping: It helps a lot and should always be applied (randomly to half of your data).
+* Changing the brightness: It had exactly the desired effect. Decreasing the brightness of the lake track images, the model was able to drive on the much darker mountain track without ever having seen it during training. Depending on the training iteration, I randomly varied the brightness of 10-50% of the images between factor 0.4 and 1.5 of the original brightness.
 * Translation: Horizontal translation is just an extension of the effect of using the left and right camera images and is very helpful, if not essential, to training a model that stays close to the center of the lane. I randomly translated the images by 0 to 40 pixels, sometimes 0 to 50 pixels. Steering angle adjustments of 0.003-0.004 per pixel of translation turned out to yield reasonable correction speeds that are neither too abrupt on straight roads nor too slow in sharp curves. Vertical translation turned out to be unnecessary. I did it a little bit (0-10 pixels) just to create more diverse data, but vertical translation does not serve as an even remotely realistic proxy for simulating changes in the slope of the road.
 * Curvature perspective transform: This turned out to be useful to simulate sharper curves on the one hand, but even more importantly it simulates situations in which the car is oriented at an angle to the lane rather than parallel to the lane. The image above illustrates this effect. If you compare the central vertical gridline in the original image and the distorted image you see that the distorted image simulates the car being oriented toward the side of the lane rather than toward the center of the road as in the original image. Of course, this primitive perspective distortion is a very imperfect proxy for a change in the curvature of the road. To truly increase the sharpness of a curve in a realistic way for example, one can of course not just shift the pixels in the linear way that this transform does, but this approximation still did an alright job. In order to understand the steering angle adjustment factor you would have to read the code, but I documented the generator function in great detail in case you're interested.
 * Rotation: I experimented with rotating images to simulate a change in the curvature of the road, but in most cases this does not yield a realistic approximation, and more importantly it is inferior to the perspective transform described above. I did not end up using this transform.
@@ -164,29 +186,15 @@ The generator function provides some options to apply the above image transforms
 
 Note that `assemble_filelists()` returns the steering angle list as a list with two columns, containing not only the steering angle, but also the original steering angle of the center camera version of the respective image. The reason for this is that the original center camera steering angle is a reasonable indicator for the actual curvature of the road (assuming that I drove relatively cleanly along the trajectory of the road) while the adjusted steering angles of the left and right camera images are not. Example: If an image has a steering angle of -0.15, it might be a slight left turn, but it might also be the right camera image of a straight part of the road (or neither). Hence it is useful to preserve the original steering angle associated with the center camera image for all images. The `mode` option in the generator function uses this original center camera steering angle to decide which images are eligible for transformation an which aren't. 
 
+### Simulation
 
-### Architecture and Training Documentation
-
-* Is the solution design documented?	The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
-* Is the model architecture documented?	The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged.
-* Is the creation of the training dataset and training process documented?	The README describes how the model was trained and what the characteristics of the dataset are. Information such as how the dataset was generated and examples of images from the dataset must be included.
+* Is the car able to navigate correctly on test data?
 
 SPECIFICATION : 
 
-#### Final Model Architecture
+As was the Goal fo this project , None of the tires leave the drivable portion of the track surface. The car doesn't pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle). As per the requirement car drives well on Track1  -Lakeside
 
-The architecture of the final model is as follows (model.py):
-* RGB image input with dimensions 80x160x3
-* Keras Cropping2D layer to crop the input to 50x150 pixels
-* Keras Lambda layer to convert the feature value range to [-1,1]
-* Three convolutional layers with 32, 64, and 128 filters, filter sizes 8x8, 5x5, and 3x3, and strides 4, 2, and 2.
-* One dense layer with 512 units following the convolutional layers, and one output unit
-* ELUs as nonlinearities after each layer except the output unit
-* Batch normalization after each layer except the output unit
-* Dropout after the third conv and first dense layer (both rate 0.5)
+### Improvments
 
-The visualization of the architecture was mentioned as optional according to the project rubric so didn't include a image here.
-
-
-
-
+There is still lot of scope of Improvement for the car to be driven on the Jungle Track2.
+The Challening parts faced were :-
