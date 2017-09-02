@@ -28,7 +28,7 @@ The goals / steps taken to completed this Project are as follows:
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
-### 1. Required Files
+### [ 1.] Required Files
 
 * Are all required files submitted?
 
@@ -36,9 +36,10 @@ SPECIFICATION :  My project includes the following files:
 * model.py :- This is the script created to train the model
 * drive.py :- This script is as used without any changes for driving the car in autonomous mode
 * model.h5 :- This file has the data which represents trained convolution neural network 
-* writeup_report.md :- Summarizes the results
+* Project3_BehavioralCloning_writeup_report.md :- Summarizes the results
+* run.mp4 : This is the Recorded Video fileo of car driving autonomously on Track1
 
-### 2. Quality of Code
+### [ 2.] Quality of Code
 #### Submission includes functional code
 * Is the code functional?	
 * Is the code usable and readable?
@@ -52,7 +53,7 @@ python drive.py model.h5
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 
-### 3. Model Architecture and Training Strategy
+### [ 3.] Model Architecture and Training Strategy
 
 * Has an appropriate model architecture been employed for the task?	The neural network uses convolution layers with appropriate filter sizes. Layers exist to introduce nonlinearity into the model. The data is normalized in the model.
 * Has an attempt been made to reduce overfitting of the model?	Train/validation/test splits have been used, and the model uses dropout layers or other methods to reduce overfitting.
@@ -102,7 +103,7 @@ The images from the two non-center cameras unsurprisingly turned out to be very 
 
 Of course non-center camera images are just two specific cases of horizontal translation, and as will be described in the next section, I applied horizontal translation randomly to the entire training dataset to generate many more different viewpoints.
 
-### 4. Architecture and Training Documentation
+### [ 4.] Architecture and Training Documentation
 
 * Is the solution design documented?	The README thoroughly discusses the approach taken for deriving and designing a model architecture fit for solving the given problem.
 * Is the model architecture documented?	The README provides sufficient details of the characteristics and qualities of the architecture, such as the type of model used, the number of layers, the size of each layer. Visualizations emphasizing particular qualities of the architecture are encouraged.
@@ -191,7 +192,7 @@ Data augmentation helped the model to drive well on  the lake but not on jungle 
 
 Trying to get the model to work on the very different and much more challenging jungle track while training it only on the lake track date was unsuccessful. However, even after training it on jungle track data I initially had difficulties getting it to drive on that track. I anticipated that sharp turns would be an issue, but those didn't cause any problems. There were three other leading causes of failure in my training results - see the images below. The first were sudden downhill parts where a sharp edge marks the end of the visible road before it goes downhill and the car cannot see early enough what comes after. This problem was sometimes exacerbated by the second leading cause of failure, unrelated road stretches on the horizon creating the optical illusion of being the continuations of the road the car is currently on, leading the model to follow the road stretch on the horizon rather than the road it was on. The third leading cause of failure were the two directly adjacent road stretches at the start of the track. The road is completely straight there, but my model initially still had difficulties staying straight, it always wanted to pull over to the other side of the road. It took recording a bunch of extra data on this stretch at the start to get this problem under control.
 
-### Simulation / Training Result
+### [ 5.] Simulation / Training Result
 
 * Is the car able to navigate correctly on test data?
 
@@ -199,9 +200,9 @@ SPECIFICATION :
 
 As was the Goal fo this project , None of the tires leave the drivable portion of the track surface. The car doesn't pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle). As per the requirement car drives well on Track1  -Lakeside
 
-[!01_Lake_Track ](./run.mp4)
+![01_Lake_Track](./run.mp4)
 
-### Improvments
+### [ 6.] Improvments
 
 There is still lot of scope of Improvement for the car to be driven on the Jungle Track2.
 The Challening parts faced were :-
