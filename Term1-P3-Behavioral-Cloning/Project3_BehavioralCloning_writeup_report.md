@@ -4,7 +4,7 @@
 
 ---
 
-The goals / steps taken to completed this Project are as follows:
+The Steps taken to completed this Project are as follows:
 * Used the simulator to collect data of good driving behavior [ Provided by Udacity from [here] ](https://github.com/udacity/self-driving-car-sim)
 * Saved the Data on Local system under ~/Desktop/data
 * Validated the mimium dependences (CarND Term1 Starter Kit as reference) for running the Project like (Python3, TensorFlow, Keras, Numpy, OpenCV)
@@ -13,6 +13,7 @@ The goals / steps taken to completed this Project are as follows:
 * Tested that the model successfully drives around track one without leaving the road. Attempted to test the car to Run on track two but it was not successful. Posted below few findings about it.
 * Summarized the results with a written report as Below
 
+The Goal of this Project is to Drive the car in simulator in autonomous mode on Track1
 
 [//]: # (Image References)
 
