@@ -30,7 +30,11 @@ The goals / steps taken to completed this Project are as follows:
 
 ---
 ### 1. Required Files
-
+	
+```diff
++ this text is highlighted in green
+- this text is highlighted in red
+```
 #### Submission includes all required files and can be used to run the simulator in autonomous mode
 
 * Are all required files submitted?
