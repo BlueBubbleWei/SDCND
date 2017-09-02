@@ -31,7 +31,7 @@ The goals / steps taken to completed this Project are as follows:
 ---
 ### Required Files
 
-#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
+### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 [Are all required files submitted?]
 
 SPECIFICATION : My project includes the following files:
@@ -46,7 +46,7 @@ SPECIFICATION : My project includes the following files:
 
 SPECIFICATION : The model provided can be used to successfully operate the simulation.
 
-#### 2. Submission includes functional code
+### 2. Submission includes functional code
 
 * Is the code usable and readable?	The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
 
@@ -77,7 +77,7 @@ I trained modified version of [this](https://github.com/commaai/research/blob/ma
 
 Instead of following the conv layers with max pooling layers I used a convolutional stride greater than 1, namely 4 for the first conv layer and 2 for the second and third conv layers. I didn't do this because I had good theoretical reasons for it, but because the Comma.ai model that my model is based on did it this way and I considered it an experiment to see if it would produce good results. Intuitively, reducing complexity through pooling should be superior over reducing complexity by increasing the stride in the conv layers, since the former method chooses the most relevant information out of all possible filter positions, while the latter method loses information by skipping part of the possible filter positions to begin with. In practice, however, it seems to work well enough.
 
-#### Attempt been made to reduce overfitting of the model
+### Attempt been made to reduce overfitting of the model
 Along with proper architectures, the data you collect and the data augmentation techniques you apply are also equally crucial. To make the first run the car on track one it took quite a while and the majority of efforts where spend on the collection and processing of the training data rather than parameter tunning of the  model.
 
 Batch normalization helps reduce overfitting, so tried removing the dropout layers.Did not encounter signs of overfitting in general, even without the dropout layers.
