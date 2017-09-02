@@ -151,23 +151,23 @@ Here is an example of some of these transformations. The original image for comp
 
 Translated horizontally by 30 pixels (steering angle == -0.09):
 
-![image2](/writeup_images/01_translate.png)
+![image2](./writeup_images/01_translate.png)
 
 Perspective transform to simulate a left turn / orientation of the car to the right edge of the lane (steering angle == -0.32):
 
-![image3](/writeup_images/02_curvature.png)
+![image3](./writeup_images/02_curvature.png)
 
 Perspective transform to simulate a downhill road (steering angle == 0.00):
 
-![image4](/writeup_images/03_incline_down.png)
+![image4](./writeup_images/03_incline_down.png)
 
 Perspective transform to simulate an uphill road (steering angle == 0.00):
 
-![image5](/writeup_images/04_incline_up.png)
+![image5](./writeup_images/04_incline_up.png)
 
 Horizontal flip (steering angle == -0.00):
 
-![image6](/writeup_images/05_flip.png)
+![image6](./writeup_images/05_flip.png)
 
 Results of my data augmentation experiments:
 
@@ -186,7 +186,17 @@ The generator function provides some options to apply the above image transforms
 
 Note that `assemble_filelists()` returns the steering angle list as a list with two columns, containing not only the steering angle, but also the original steering angle of the center camera version of the respective image. The reason for this is that the original center camera steering angle is a reasonable indicator for the actual curvature of the road (assuming that I drove relatively cleanly along the trajectory of the road) while the adjusted steering angles of the left and right camera images are not. Example: If an image has a steering angle of -0.15, it might be a slight left turn, but it might also be the right camera image of a straight part of the road (or neither). Hence it is useful to preserve the original steering angle associated with the center camera image for all images. The `mode` option in the generator function uses this original center camera steering angle to decide which images are eligible for transformation an which aren't. 
 
-### Simulation
+####  Validation
+
+Validation dataset was used, but even if validation error is helpful to monitor overfitting and to make sure that your model is getting better, the main criteia to look for is if you can drive the car around the entire track, and the validation error can't tell you when that point is reached (if your validation dataset even reflects all relevant situations!). The validation error played only a small role for the decisions I made, the crucial and more insightful test is to watch your model drive in autonomous mode.
+
+#### Training Process
+
+Data augmentation helped the model to drive well on  the lake but not on jungle track. During training. 10 epochs on 90% (the remaining 10% were held out for validation) of the the 45,000-image dataset recorded on the lake track were enough to achieve this.
+
+Trying to get the model to work on the very different and much more challenging jungle track while training it only on the lake track date was unsuccessful. However, even after training it on jungle track data I initially had difficulties getting it to drive on that track. I anticipated that sharp turns would be an issue, but those didn't cause any problems. There were three other leading causes of failure in my training results - see the images below. The first were sudden downhill parts where a sharp edge marks the end of the visible road before it goes downhill and the car cannot see early enough what comes after. This problem was sometimes exacerbated by the second leading cause of failure, unrelated road stretches on the horizon creating the optical illusion of being the continuations of the road the car is currently on, leading the model to follow the road stretch on the horizon rather than the road it was on. The third leading cause of failure were the two directly adjacent road stretches at the start of the track. The road is completely straight there, but my model initially still had difficulties staying straight, it always wanted to pull over to the other side of the road. It took recording a bunch of extra data on this stretch at the start to get this problem under control.
+
+### Simulation / Training Result
 
 * Is the car able to navigate correctly on test data?
 
@@ -194,7 +204,10 @@ SPECIFICATION :
 
 As was the Goal fo this project , None of the tires leave the drivable portion of the track surface. The car doesn't pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle). As per the requirement car drives well on Track1  -Lakeside
 
+[!01_Lake_Track ](./run.mp4)
+
 ### Improvments
 
 There is still lot of scope of Improvement for the car to be driven on the Jungle Track2.
 The Challening parts faced were :-
+Even though it was a problem initially on the jungle track when I didn't limit car's speed, because it would get too fast downhill and miss immediately consecutive turns, surprisingly I managed to get it to a point where it can run laps on the jungle track even without any speed limitation if the default throttle is set to 0.2. I still modified the drive.py to ensure a minimum speed of 12 mph (because otherwise watching the car drive on the jungle track is tedious) and a maximum of 24 mph so that the car drives more smoothly. Feel free to remove the max speed though - the driving will be less clean, but it will still work.
