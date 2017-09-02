@@ -17,8 +17,8 @@ The Steps taken to complete Project are as follows:
 * Mandatory Requirement - Output from each stage of Pipeline has been saved in the folder output_images.Same have been described in this writeup report. The pipeline works well on the project_video.mp4 provided by udacity team.
 
 ### Navigating this directory
-* Project pipelines are in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
-* Helper functions are in `./advance_lane_lines_utility.py`.
+* Project pipelines are in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
+* Helper functions are in `advance_lane_lines_utility.py`.
 * The images for camera calibration are stored in the folder called `./camera_cal`.  
 * The images in `./test_images` are for testing your pipeline on single frames.
 
