@@ -34,14 +34,14 @@ The goals / steps taken to completed this Project are as follows:
 ```
 ---
 ```diff
-- ### 1. Required Files
+-### 1. Required Files
 ```
 #### Submission includes all required files and can be used to run the simulator in autonomous mode
 
 * Are all required files submitted?
 
 ```diff
-+ SPECIFICATION :
++SPECIFICATION :
 ```
  My project includes the following files:
 * model.py :- This is the script created to train the model
