@@ -24,26 +24,15 @@ The goals / steps taken to completed this Project are as follows:
 [image6]: ./writeup_images/05_flip.png "Flipped Image"
 [image7]: ./writeup_images/placeholder_small.png 
 
-
+---
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
-```diff
-+ this text is highlighted in green
-- this text is highlighted in red
-```
----
-```diff
--### 1. Required Files
-```
-#### Submission includes all required files and can be used to run the simulator in autonomous mode
+### 1. Required Files
 
 * Are all required files submitted?
 
-```diff
-+SPECIFICATION :
-```
- My project includes the following files:
+SPECIFICATION :  My project includes the following files:
 * model.py :- This is the script created to train the model
 * drive.py :- This script is as used without any changes for driving the car in autonomous mode
 * model.h5 :- This file has the data which represents trained convolution neural network 
@@ -54,9 +43,7 @@ The goals / steps taken to completed this Project are as follows:
 * Is the code functional?	
 * Is the code usable and readable?
 
-SPECIFICATION : 
-
-The model provided can be used to successfully operate the simulation.The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
+SPECIFICATION :  The model provided can be used to successfully operate the simulation.The code in model.py uses a Python generator, if needed, to generate data for training rather than storing the training data in memory. The model.py code is clearly organized and comments are included where needed.
 
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
@@ -106,7 +93,7 @@ I reduced the original size of the recorded images (160x320 pixels) by half in b
 
 #### Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 674).
 
 ####  Appropriate training data
 
@@ -186,9 +173,9 @@ Results of my data augmentation experiments:
 * Rotation: I experimented with rotating images to simulate a change in the curvature of the road, but in most cases this does not yield a realistic approximation, and more importantly it is inferior to the perspective transform described above. I did not end up using this transform.
 * Incline perspective transform: While it generally actually is a more realistic approximation than the curvature transform above, it turned out to be completely unnecessary - I did not end up using this.
 
-All the transforms above are defined as small helper functions in lines 117-250 of model.py.
+All the transforms above are defined as small helper functions in lines 127-250 of model.py.
 
-The function that actually applies these transformations is the generator function defined in lines 254-639 of model.py. The large number of code lines is mostly owed to detailed documentation and to distinguishing between different cases triggered by options in the arguments. In a nutshell, it loads batches of training data and labels, applies the transforms specified in the arguments, yields the results, shuffles the dataset upon each complete pass, and can do this indefinitely. Each transform has its own independent application probability and some can choose from a number of modes to operate in - see the documentation.
+The function that actually applies these transformations is the generator function defined in lines 253-638 of model.py. The large number of code lines is mostly owed to detailed documentation and to distinguishing between different cases triggered by options in the arguments. In a nutshell, it loads batches of training data and labels, applies the transforms specified in the arguments, yields the results, shuffles the dataset upon each complete pass, and can do this indefinitely. Each transform has its own independent application probability and some can choose from a number of modes to operate in - see the documentation.
 
 The generator function helps to apply the above image transforms in a more targeted way. For the curvature transformation, the `mode` argument specifies whether all images are eligible for a given transform, or only images with a certain minimum or maximum corresponding absolute steering angle, or only to images with a corresponding steering angle that is positive or negative. During training, it sometimes proved helpful to apply the curvature transform only to images of an already curved road. It was also better to apply the artificial curvature only in the same direction as the original curvature. The likely reason for this phenomenon is that the steering angle adjustment associated with the artificial curvature change is not chosen perfectly, and if a road that was curved to the left is artificially straightened by being transformed to the right does not end up with the appropriate steering angle (e.g. zero), then this creates conflicting training data.
 
@@ -212,7 +199,7 @@ SPECIFICATION :
 
 As was the Goal fo this project , None of the tires leave the drivable portion of the track surface. The car doesn't pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle). As per the requirement car drives well on Track1  -Lakeside
 
-[!01_Lake_Track ](./run.mp4)
+![01_Lake_Track ](./run.mp4)
 
 ### Improvments
 
