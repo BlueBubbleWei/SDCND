@@ -18,9 +18,9 @@ The Steps taken to complete Project are as follows:
 
 ### Navigating this directory
 * Project pipelines are in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
-* Helper functions are in `advance_lane_lines_utility.py`.
-* The images for camera calibration are stored in the folder called `./camera_cal`.  
-* The images in `./test_images` are for testing your pipeline on single frames.
+* Helper functions are in [advance_lane_lines_utility.py](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/advance_lane_lines_utility.py).
+* The images for camera calibration are stored in the folder called [camera_cal](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/camera_cal).  
+* The images in [test_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/test_images) are for testing your pipeline on single frames.
 
 
 ## Project Outline:
