@@ -28,18 +28,22 @@ The goals / steps taken to completed this Project are as follows:
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
----
-### 1. Required Files
-	
 ```diff
 + this text is highlighted in green
 - this text is highlighted in red
+```
+---
+```diff
+- ### 1. Required Files
 ```
 #### Submission includes all required files and can be used to run the simulator in autonomous mode
 
 * Are all required files submitted?
 
-SPECIFICATION : My project includes the following files:
+```diff
++ SPECIFICATION :
+```
+ My project includes the following files:
 * model.py :- This is the script created to train the model
 * drive.py :- This script is as used without any changes for driving the car in autonomous mode
 * model.h5 :- This file has the data which represents trained convolution neural network 
