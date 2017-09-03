@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 * Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
 * The images for camera calibration are stored in the folder called camera_cal. The images in test_images are for testing your pipeline on single frames. If you want to extract more test images from the videos, you can simply use an image writing method like cv2.imwrite(), i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.
 
-The Goal of this Project is to find the Lane Lines using advanced methodology on the provided video clipping.
+The Goal of this Project is to find the Lane Lines using recently learnt features such as perspective transform,Warp etc on the provided video clipping.
 
 ---
 ## Rubric Points
@@ -177,18 +177,11 @@ SPECIFICATION :  I added a few checks to eliminate and overwrite implausibly dra
         * Solution: Add a positive horizontal offset so the parts to the far right are not included in the histogram.
 
 * Problem 2: No lane line detected (usually right lane line)
-    * Solution: Relax x gradient and S channel thresholds using a `while` loop that relaxes the thresholds by a tiny amount and then repeats the detection process if no lane line is detected. This allows us te relax the thresholds when no lane line is detected without adding noise to frames where lane lines were detected on the first go (e.g. if we'd just changed the thresholds directly).
+    * Solution: Relax x gradient and S channel thresholds using a `while` loop that relaxes the thresholds by a tiny amount and then repeats the detection process if no lane line is detected. This allows us to relax the thresholds when no lane line is detected without adding noise to frames where lane lines were detected on the first go (e.g. if we'd just changed the thresholds directly).
     
 * Problem 3: Overly curvy (or otherwise implausible) lane lines drawn
     * Solution: Check for two things. If either criteria is not met, replace the lane line for this frame with the previous accepted lane line if it exists. This approximation works because lane lines are continuous and do not change shape quickly.
         * Criteria 1: Curvature is plausible, i.e. radius of curvature is smaller than 500m. (`plausible_curvature`)
         * Criteria 2: The lane lines drawn are similar to the previous set of (accepted) lane lines drawn. (`plausible_continuation_of_traces`)
 
-
-
-
-
-
-
-## IV. Discussion
 
