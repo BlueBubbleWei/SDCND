@@ -25,6 +25,18 @@ The Steps taken to complete Project are as follows:
 ## Project Outline:
 The code for each step is in the correspondingly named section of `./Project4_Advance-Lane-Lines.ipynb`.
 
+PIPELINE of this project is as follows and same has been mentioned in ipynb file:  
+
+* STEP1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+* STEP2. Apply the distortion correction to the raw image.  
+* STEP3. Use color transforms, gradients, etc., to create a thresholded binary image.
+* STEP4. Apply a perspective transform to rectify binary image ("birds-eye view"). 
+* STEP5. Detect lane pixels and fit to find lane boundary.
+* STEP6. Determine curvature of the lane and vehicle position with respect to center.
+* STEP7. Warp the detected lane boundaries back onto the original image.
+* STEP8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+
 ## I. Camera Calibration
 
 ### 1. Computing the camera matrix and distortion coefficients
