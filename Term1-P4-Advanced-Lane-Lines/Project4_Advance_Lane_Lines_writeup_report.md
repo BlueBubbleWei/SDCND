@@ -97,9 +97,12 @@ Divide the image into `n` horizontal strips (steps) of equal height.For each ste
 
 b.) Fit positions of lane-line pixels with a polynomial
 
-Fit a second order polynomial to each lane line using `np.polyfit`. Example plot Polynomial fitted to birds-eye-view image.
+Fit a second order polynomial to each lane line using `np.polyfit`. 
+Example plot Polynomial fitted to birds-eye-view image.
 Polynomial drawn on image using  `draw_polyline`.
+
 ![image7](./output_images/fit-lanelines-with-poly.png)
+
 
 c.) Lane line area highlighted 
 
