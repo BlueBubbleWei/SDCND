@@ -116,10 +116,10 @@ b.) Fit positions of lane-line pixels with a polynomial
 Polynomial fitted to birds-eye-view image:
 ![image7](./writeup_images/fit-lanelines-with-poly.png)
 
-Polynomial drawn on image using helper function `draw_poly`:
+Polynomial drawn on image using function `draw_poly`:
 ![image8](./writeup_images/drawn-poly.png)
 
-c.) Lane line area highlighted using helper function `highlight_lane_line_area`:
+c.) Lane line area highlighted using function `highlight_lane_line_area`:
 
 ![image9](./writeup_images/drawn-poly-colour.png)
 
