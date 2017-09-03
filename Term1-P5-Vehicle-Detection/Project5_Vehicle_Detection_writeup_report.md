@@ -95,7 +95,7 @@ Below are listed some of parameters which I arrived at after few iterations:
 4. cell_per_block = 1 - I tried 1 and 2. The performance difference b/w them wasn't much but 1 cell per block had significantly less no. of features and speeded up training and pipeline
 5. hog_channel = 'ALL' - ALL resulted in far better performance than any other individual channel
 
-Reasonable amoutn of time was spend to choose these parameters. In the beginning I relied on the test accuracy in SVM classifier to choose parameters but then found that most combinations had very high accuracy (b/w 96% and 98%) and this wasn't indicative of performance in the video. So these parameters were chosen after painstakingly trying and observing performance in the video. The code for this step is contained in the code cell 9 and 10 of the IPython notebook.
+Reasonable amount of time was spend to choose these parameters. In the beginning I relied on the test accuracy in SVM classifier to choose parameters but then found that most combinations had very high accuracy (b/w 96% and 98%) and this wasn't indicative of performance in the video. So these parameters were chosen after painstakingly trying and observing performance in the video. The code for this step is contained in the code cell 9 and 10 of the IPython notebook.
 
 ---
 * Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
