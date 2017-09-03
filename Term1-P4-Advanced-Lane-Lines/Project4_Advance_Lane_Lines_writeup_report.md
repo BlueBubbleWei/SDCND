@@ -73,12 +73,7 @@ To apply distortion correction to each image. Example binary images have been in
 
 SPECIFICATION :  To Create a thresholded binary image
 
-1. Threshold x gradient (for grayscaled image)
-2. Threshold colour channel (S channel)
-3. Combine the two binary thresholds to generate a binary image.
-4. The parameters (e.g. thresholds) were determined via trial and error (see Discussion). 
-5. Improvement: determine the parameters in a more rigorous way.
-6. Example of a thresholded binary image
+Threshold x gradient (for grayscaled image).Threshold colour channel (S channel).  Combine the two binary thresholds to generate a binary image.The parameters (e.g. thresholds) were determined via trial and error.Example of a thresholded binary image
 ![image3](./output_images/thresholded-binary-image.png)
 
 ---
@@ -98,18 +93,11 @@ SPECIFICATION : To Apply Perspective transform
 
 SPECIFICATION : a.) To identify lane-line pixels and fit their positions with a polynomial
 
-1. Divide the image into `n` horizontal strips (steps) of equal height.
-2. For each step, take a count of all the pixels at each x-value within the step window using a histogram generated from `np.sum`.
-3. Smoothen the histogram using `scipy.signal.medfilt`.
-4. Find the peaks in the left and right halves (one half for each lane line) histogram using `signal.find_peaks_swt`.
-5. Get (add to our collection of lane line pixels) the pixels in that horizontal strip that have x coordinates close to the two peak x coordinates.
+Divide the image into `n` horizontal strips (steps) of equal height.For each step, take a count of all the pixels at each x-value within the step window using a histogram generated from `np.sum` and smoothen the histogram.Find the peaks in the left and right halves (one half for each lane line) histogram.Get (add to our collection of lane line pixels) the pixels in that horizontal strip that have x coordinates close to the two peak x coordinates.
 
 b.) Fit positions of lane-line pixels with a polynomial
 
-1. Fit a second order polynomial to each lane line using `np.polyfit`.
-2. Example plot
-
-Polynomial fitted to birds-eye-view image.
+Fit a second order polynomial to each lane line using `np.polyfit`. Example plot Polynomial fitted to birds-eye-view image.
 Polynomial drawn on image using  `draw_polyline`.
 ![image7](./output_images/fit-lanelines-with-poly.png)
 
@@ -147,9 +135,6 @@ SPECIFICATION :  Below is the Link in this writeup for the final output video su
 
 [Video output](./project_output.mp4)
 
-
-I condensed the operations into a single function `image_pipeline` in the ipynb enabled 
-
 Code:
 ```
 # Import everything needed to edit/save/watch video clips
@@ -165,13 +150,12 @@ white_clip = clip1.fl_image(process_image) #NOTE: this function expects color im
 
 ```
 
-
 * Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?	Discussion includes some consideration of problems/issues faced, what could be improved about their algorithm/pipeline, and what hypothetical cases would cause their pipeline to fail.
 
 SPECIFICATION :  
 
-Project pipeline works well with Project video, but it wasn't flawless for challange video  and harder challenge videos. There was false detection of lane line...
+Project pipeline works well with Project video, but it wasn't flawless for challange video  and harder challenge videos. There was false detection of lane line and so didn't submit both Challenge and Hard Challenge videos.
 
 ---
-END
+END OF WRITEUP
 ---
