@@ -16,6 +16,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./output_images/image1.png
+[image11]: ./output_images/image1.1.png
 [image2]: ./output_images/image2.png
 [image3]: ./output_images/image3.png
 [image4]: ./output_images/image4.png
@@ -73,6 +74,8 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 The dataset used contained 2826 cars and 8968 not car images. This dataset is unbalanced. I decided to leave it unbalanced since in the project video not car images far exceed the car images. The code for this step is contained in the code cell 2 of the IPython notebook.
 
 I started by exploring the color features - spatial binning and color histogram. For spatial binning, I reduced the image size to 16,16 and the plot below shows the difference in spatial binning features between car and notcar images for channel - RGB. The plot delta shows the difference b/w car and notcar spatial binned features
+
+![difference in spatial binning features between car and notcar imagesimage][image1.1]
 
 The code for this step is contained in the code cell 3 and 6 of the IPython notebook. In the end I decided to not use color features (histogram and spatial binning) as it adversely affected performance.
 
