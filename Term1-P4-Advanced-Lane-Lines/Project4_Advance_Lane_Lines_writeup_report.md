@@ -136,7 +136,7 @@ SPECIFICATION : To plot result back down onto tho road such that the lane area i
 
 SPECIFICATION :  Below is the Link in this writeup for the final output video submitted with the project.
 
-[Video output](./project_output.mp4)
+[Video output](./project_video_out.mp4)
 
 Code:
 ```
