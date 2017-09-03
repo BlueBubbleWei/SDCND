@@ -4,22 +4,24 @@
 
 ---
 ## Project Outline:
-The Steps taken to complete Project are as follows (which is also the PIPELINE mentioned in `.ipynb` file):  
 
-* STEP1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* STEP2. Apply the distortion correction to the raw image.  
-* STEP3. Use color transforms, gradients, etc., to create a thresholded binary image.
-* STEP4. Apply a perspective transform to rectify binary image ("birds-eye view"). 
-* STEP5. Detect lane pixels and fit to find lane boundary.
-* STEP6. Determine curvature of the lane and vehicle position with respect to center.
-* STEP7. Warp the detected lane boundaries back onto the original image.
-* STEP8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+The goals / steps of this project are the following:
+
+* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+* Apply a distortion correction to raw images.
+* Use color transforms, gradients, etc., to create a thresholded binary image.
+* Apply a perspective transform to rectify binary image ("birds-eye view").
+* Detect lane pixels and fit to find the lane boundary.
+* Determine the curvature of the lane and vehicle position with respect to center.
+* Warp the detected lane boundaries back onto the original image.
+* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+* The images for camera calibration are stored in the folder called camera_cal. The images in test_images are for testing your pipeline on single frames. If you want to extract more test images from the videos, you can simply use an image writing method like cv2.imwrite(), i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.
 
 The Goal of this Project is to find the Lane Lines using advanced methodology on the provided video clipping.
 
 ---
 ## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/571/view) individually and describe how I addressed each point in my implementation.  
 
 ### [ 1.] Writeup / README
 
@@ -47,7 +49,20 @@ SPECIFICATION :  Computing the camera matrix and distortion coefficients. This w
 
 * Provide an example of a distortion-corrected image.	Distortion correction that was calculated via camera calibration has been correctly applied to each image. An example of a distortion corrected image should be included in the writeup (or saved to a folder) and submitted with the project.
 
-SPECIFICATION :  To apply distortion correction to each image. Example binary images have been included in the writeup (or saved to a folder) and submitted with the project.
+SPECIFICATION : 
+
+The PIPELINE mentioned in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb) is as below:  
+
+* STEP1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+* STEP2. Apply the distortion correction to the raw image.  
+* STEP3. Use color transforms, gradients, etc., to create a thresholded binary image.
+* STEP4. Apply a perspective transform to rectify binary image ("birds-eye view"). 
+* STEP5. Detect lane pixels and fit to find lane boundary.
+* STEP6. Determine curvature of the lane and vehicle position with respect to center.
+* STEP7. Warp the detected lane boundaries back onto the original image.
+* STEP8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+To apply distortion correction to each image. Example binary images have been included in the writeup (or saved to a folder) and submitted with the project.
 
 1. Apply `cv2.undistort` with the camera matrix and distortion coefficients obtained in Step 1. 
 2. Example of a distortion-corrected image
