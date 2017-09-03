@@ -128,18 +128,16 @@ c.) Lane line area highlighted using helper function `highlight_lane_line_area`:
 
 SPECIFICATION :  To calculate the radius of curvature of the lane and the position of the vehicle with respect to the center
 
-1. Code: `left_curverad = ((1 + (2*left_fit[0]*y_eval + left_fit[1])**2)**1.5) /np.absolute(2*left_fit[0])`
+ Code: `curverad = ((1 + (2*left_fit[0]*y_eval + left_fit[1])**2)**1.5) /np.absolute(2*left_fit[0])`
 
 
 * Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.	The fit from the rectified image has been warped back onto the original image and plotted to identify the lane boundaries. This should demonstrate that the lane boundaries were correctly identified. An example image with lanes, curvature, and position from center should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION : To plot result back down onto tho road such that the lane area is identified clearly.
 1. Warp lane lines back onto original image (car camera's perspective) using `cv2.warpPerspective`.
-2. Combine lane lines with original image (version corrected for distortion) using `cv2.add`.
-3. Result: Lane lines combined with original image:
-![image10](./writeup_images/combined-image-distortion-corrected.png)
-4. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
-![image11](./writeup_images/visual_display_output.png)
+2. Combine lane lines with original image (version corrected for distortion) using `cv2.addWeighted`.
+3. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+![image10](./output_images/visual_display_output.png)
 
 
 ### [ 3.] Pipeline (video)
