@@ -1,9 +1,9 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+# **Vehicle Detection Project**
+
+### Writeup - Submitted by Deepak Mane
 
 ---
-
-**Vehicle Detection Project**
+## Project Outline:
 
 The goals / steps of this project are the following:
 
@@ -24,15 +24,20 @@ The goals / steps of this project are the following:
 [image7]: ./examples/output_bboxes.png
 [video1]: ./project_video.mp4
 
-## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+---
+## Rubric Points
+### Here I will consider the [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### [ 1.] Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+* Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
-You're reading it!
+SPECIFICATION :  My project includes the following files:
+* `Project5_Vehicle_Detection_writeup_report.md`:- This is the writeup which is submitted for this project.
+* Code for Project pipeline is in [Project5_Vehicle_Detection.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P5-Vehicle-Detection/Project5_Vehicle_Detection.ipynb).
+* The images in [test_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P5-Vehicle-Detection/test_images) are for testing your pipeline on single frames.
+* The images in [output_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P5-Vehicle-Detection/output_images) are from Output from each stage of Pipeline.
 
 ###Histogram of Oriented Gradients (HOG)
 
@@ -79,6 +84,9 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result](./project_video.mp4)
 
+SPECIFICATION :  Below is the Link in this writeup for the final output video submitted with the project.
+
+[Video output](./vehicle_detection.mp4)
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
