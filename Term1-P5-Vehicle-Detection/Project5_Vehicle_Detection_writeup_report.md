@@ -87,7 +87,7 @@ Next I looked at HOG features using skimage.hog() functions. The key parameters 
 ---
 * Explain how you settled on your final choice of HOG parameters.
 
-Below are listed some of paramets which I arrived at after few iterations:
+Below are listed some of parameters which I arrived at after few iterations:
 
 1. color_space = 'YCrCb' - YCrCb resulted in far better performance than RGB, HSV and HLS
 2. orient = 9 # HOG orientations - I tried 6,9 and 12. Model performance didn't vary much
