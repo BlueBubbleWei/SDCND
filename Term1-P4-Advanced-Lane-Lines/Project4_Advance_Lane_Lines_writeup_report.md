@@ -113,7 +113,7 @@ Polynomial fitted to birds-eye-view image.
 Polynomial drawn on image using  `draw_polyline`.
 ![image7](./output_images/fit-lanelines-with-poly.png)
 
-c.) Lane line area highlighted using function `sliding_win_search`:
+c.) Lane line area highlighted 
 
 ![image9](./output_images/drawn-poly-colour.png)
 
