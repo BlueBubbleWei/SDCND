@@ -84,14 +84,15 @@ Next I looked at HOG features using skimage.hog() functions. The key parameters 
 ---
 * Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and finally settled on the choice:
+Below are listed some of paramets which I arrived at after few iterations:
 
-color_space = 'YCrCb' - YCrCb resulted in far better performance than RGB, HSV and HLS
-orient = 9 # HOG orientations - I tried 6,9 and 12. Model performance didn't vary much
-pix_per_cell = 16 - I tried 8 and 16 and finally chose 16 since it signficantly decreased computation time
-cell_per_block = 1 - I tried 1 and 2. The performance difference b/w them wasn't much but 1 cell per block had significantly less no. of features and speeded up training and pipeline
-hog_channel = 'ALL' - ALL resulted in far better performance than any other individual channel
-I spent a lot of time narrowing down on these parameters. In the beginning I relied on the test accuracy in SVM classifier to choose parameters but then found that most combinations had very high accuracy (b/w 96% and 98%) and this wasn't indicative of performance in the video. So these parameters were chosen after painstakingly trying and observing performance in the video. The code for this step is contained in the code cell 9 and 10 of the IPython notebook.
+1. color_space = 'YCrCb' - YCrCb resulted in far better performance than RGB, HSV and HLS
+2. orient = 9 # HOG orientations - I tried 6,9 and 12. Model performance didn't vary much
+3. pix_per_cell = 16 - I tried 8 and 16 and finally chose 16 since it signficantly decreased computation time
+4. cell_per_block = 1 - I tried 1 and 2. The performance difference b/w them wasn't much but 1 cell per block had significantly less no. of features and speeded up training and pipeline
+5. hog_channel = 'ALL' - ALL resulted in far better performance than any other individual channel
+
+Reasonable amoutn of time was spend to choose these parameters. In the beginning I relied on the test accuracy in SVM classifier to choose parameters but then found that most combinations had very high accuracy (b/w 96% and 98%) and this wasn't indicative of performance in the video. So these parameters were chosen after painstakingly trying and observing performance in the video. The code for this step is contained in the code cell 9 and 10 of the IPython notebook.
 
 ---
 * Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
@@ -109,7 +110,7 @@ The code for this step is in cell 10 of the IPython notebook.
 
 To implement sliding windows, I narrowed the search area to lower half of the image and searched with different window sizes. Small windows were limited to band 400 pixels to 650 pixels since small cars are more likely to occur farther on the horizon. Below is an example of searching with windows of different sizes.
 
-![Sliding Window Search][image3] (./output_images/image3.png)
+![Sliding Window Search][image3] 
 In the sliding window technique, for each window we extract features for that window, scale extracted features to be fed to the classifier, predict whether the window contains a car using our trained Linear SVM classifier and save the window if the classifier predicts there is a car in that window.
 
 For the final model I chose 2 window sizes - [(96,96), (128,128)] and correspoding y_start_stop of [[390, 650], [390, None]]. I found that the performance was improved with x_start_stop=[700, None] since it reduced the search area to the right side lanes. I chose an overlap of 0.7
@@ -127,7 +128,6 @@ The code for this step is in cell 14 of the IPython notebook.
 ![Correct Detection][image8] 
 ![Correct Detection][image9] 
 
----
 
 ### [ 4.] Video Implementation
 
@@ -156,7 +156,6 @@ Here's an example result showing the heatmap from the last 20 frames of video, t
 
 * Here the resulting bounding boxes are drawn onto the last frame in the series:
 ![Last Frame][image10] 
-
 
 
 ---
