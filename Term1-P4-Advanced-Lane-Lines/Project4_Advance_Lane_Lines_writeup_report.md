@@ -4,28 +4,7 @@
 
 ---
 
-The Steps taken to complete Project are as follows:  
-
-* Computed the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* Applied the distortion correction to the raw image.  
-* Used color transforms, gradients, etc., to create a thresholded binary image.
-* Applied a perspective transform to rectify binary image ("birds-eye view"). 
-* Detected lane pixels and fit to find lane boundary.
-* Determined curvature of the lane and vehicle position with respect to center.
-* Warpped  the detected lane boundaries back onto the original image.
-* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
-* Mandatory Requirement - Output from each stage of Pipeline has been saved in the folder output_images.Same have been described in this writeup report. The pipeline works well on the project_video.mp4 provided by udacity team.
-
-### Navigating this directory
-* Project pipelines are in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
-* The images for camera calibration are stored in the folder called [camera_cal](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/camera_cal).  
-* The images in [test_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/test_images) are for testing your pipeline on single frames.
-* The images in [output_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/output_images) are from Output from each stage of Pipeline.
-
-## Project Outline:
-The code for each step is in the correspondingly named section of `./Project4_Advance-Lane-Lines.ipynb`.
-
-PIPELINE of this project is as follows and same has been mentioned in ipynb file:  
+The Steps taken to complete Project are as follows (which is also the PIPELINE mentioned in `.ipynb` file):  
 
 * STEP1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
 * STEP2. Apply the distortion correction to the raw image.  
@@ -35,6 +14,31 @@ PIPELINE of this project is as follows and same has been mentioned in ipynb file
 * STEP6. Determine curvature of the lane and vehicle position with respect to center.
 * STEP7. Warp the detected lane boundaries back onto the original image.
 * STEP8. Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+The Goal of this Project is to find the Lane Lines using advanced methodology on the provided video clipping.
+
+### Navigating this directory
+* Project pipelines are in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
+* The images for camera calibration are stored in the folder called [camera_cal](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/camera_cal).  
+* The images in [test_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/test_images) are for testing your pipeline on single frames.
+* The images in [output_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/output_images) are from Output from each stage of Pipeline.
+
+---
+## Rubric Points
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+
+### [ 1.] Required Files
+
+* Are all required files submitted?
+
+SPECIFICATION :  My project includes the following files:
+* model.py :- This is the script created to train the model
+* drive.py :- This script is as used without any changes for dri
+
+## Project Outline:
+The code for each step is in the correspondingly named section of `./Project4_Advance-Lane-Lines.ipynb`.
+
+
 
 
 ## I. Camera Calibration
