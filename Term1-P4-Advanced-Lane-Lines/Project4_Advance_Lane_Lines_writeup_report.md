@@ -65,10 +65,9 @@ The PIPELINE mentioned in [Project4_Advance-Lane-Lines.ipynb](https://github.com
 To apply distortion correction to each image. Example binary images have been included in the writeup (or saved to a folder) and submitted with the project.
 
 1. Apply `cv2.undistort` with the camera matrix and distortion coefficients obtained in Step 1. 
+![image1](./output_images/distortion-corrected-calib-image.png)
 2. Example of a distortion-corrected image
 ![image2](./output_images/distortion-corrected-image.png)
-![image1](./output_images/distortion-corrected-calib-image.png)
-
 
 * Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.	A method or combination of methods (i.e., color transforms, gradients) has been used to create a binary image containing likely lane pixels. There is no "ground truth" here, just visual verification that the pixels identified as part of the lane lines are, in fact, part of the lines. Example binary images should be included in the writeup (or saved to a folder) and submitted with the project.
 
@@ -113,13 +112,11 @@ b.) Fit positions of lane-line pixels with a polynomial
 1. Fit a second order polynomial to each lane line using `np.polyfit`.
 2. Example plot
 
-Polynomial fitted to birds-eye-view image:
+Polynomial fitted to birds-eye-view image.
+Polynomial drawn on image using  `draw_polyline`.
 ![image7](./output_images/fit-lanelines-with-poly.png)
 
-Polynomial drawn on image using function `draw_poly`:
-![image8](./output_images/drawn-poly.png)
-
-c.) Lane line area highlighted using function `highlight_lane_line_area`:
+c.) Lane line area highlighted using function `sliding_win_search`:
 
 ![image9](./output_images/drawn-poly-colour.png)
 
