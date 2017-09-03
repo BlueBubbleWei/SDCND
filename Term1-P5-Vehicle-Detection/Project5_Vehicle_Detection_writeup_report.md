@@ -75,7 +75,7 @@ The dataset used contained 2826 cars and 8968 not car images. This dataset is un
 
 I started by exploring the color features - spatial binning and color histogram. For spatial binning, I reduced the image size to 16,16 and the plot below shows the difference in spatial binning features between car and notcar images for channel - RGB. The plot delta shows the difference b/w car and notcar spatial binned features
 
-![difference in spatial binning features between car and notcar imagesimage][image1.1]
+![difference in spatial binning features between car and notcar imagesimage][image11]
 
 The code for this step is contained in the code cell 3 and 6 of the IPython notebook. In the end I decided to not use color features (histogram and spatial binning) as it adversely affected performance.
 
