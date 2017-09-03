@@ -28,7 +28,7 @@ The Goal of this Project is to find the Lane Lines using recently learnt feature
 * Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. Hereis a template writeup for this project you can use as a guide and a starting point.	The writeup / README should include a statement and supporting figures / images that explain how each rubric item was addressed, and specifically where in the code each step was handled.
 
 SPECIFICATION :  My project includes the following files:
-* Project4_Advance_Lane_Lines_writeup_report.md :- This is the writeup which is submitted for this project.
+* `Project4_Advance_Lane_Lines_writeup_report.md`:- This is the writeup which is submitted for this project.
 * Code for Project pipeline is in [Project4_Advance-Lane-Lines.ipynb](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/Project4_Advance_Lane_Lines.ipynb).
 * The images for camera calibration are stored in the folder called [camera_cal](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/camera_cal).  
 * The images in [test_images](https://github.com/deepak-mane/SDCND/blob/master/Term1-P4-Advanced-Lane-Lines/test_images) are for testing your pipeline on single frames.
@@ -66,8 +66,8 @@ To apply distortion correction to each image. Example binary images have been in
 
 1. Apply `cv2.undistort` with the camera matrix and distortion coefficients obtained in Step 1. 
 2. Example of a distortion-corrected image
-![image2](./writeup_images/distortion-corrected-image.png)
-![image1](./writeup_images/distortion-corrected-calib-image.png)
+![image2](./output_images/distortion-corrected-image.png)
+![image1](./output_images/distortion-corrected-calib-image.png)
 
 
 * Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.	A method or combination of methods (i.e., color transforms, gradients) has been used to create a binary image containing likely lane pixels. There is no "ground truth" here, just visual verification that the pixels identified as part of the lane lines are, in fact, part of the lines. Example binary images should be included in the writeup (or saved to a folder) and submitted with the project.
@@ -80,22 +80,22 @@ SPECIFICATION :  To Create a thresholded binary image
 4. The parameters (e.g. thresholds) were determined via trial and error (see Discussion). 
 5. Improvement: determine the parameters in a more rigorous way.
 6. Example of a thresholded binary image
-![image3](./writeup_images/thresholded-binary-image.png)
+![image3](./output_images/thresholded-binary-image.png)
 
 
 * Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.	OpenCV function or other method has been used to correctly rectify each image to a "birds-eye view". Transformed images should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION : To Apply Perspective transform
 1. Select only a hard-coded region of interest using a binary mask.
-![image4](./writeup_images/masked-thresholded-binary-image.png)
+![image4](./output_images/masked-thresholded-binary-image.png)
 2. Transform the image from the car camera's perspective to a birds-eye-view perspective.
 3. Hard-code the source and destination polygon coordinates and obtain the matrix `M` that maps them onto each other using `cv2.getPerspective`.
 4. Warp the image to the new birds-eye-view perspective using `cv2.warpPerspective` and the perspective transform matrix `M` we just obtained.
 5. Example of a transformed image
 Before (masked):
-![image5](./writeup_images/masked-thresholded-binary-image.png)
+![image5](./output_images/masked-thresholded-binary-image.png)
 After:
-![image6](./writeup_images/birds-eye-view-image.png)
+![image6](./output_images/birds-eye-view-image.png)
 
 
 * Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?	Methods have been used to identify lane line pixels in the rectified binary image. The left and right line have been identified and fit with a curved functional form (e.g., spine or polynomial). Example images with line pixels identified and a fit overplotted should be included in the writeup (or saved to a folder) and submitted with the project.
@@ -114,14 +114,14 @@ b.) Fit positions of lane-line pixels with a polynomial
 2. Example plot
 
 Polynomial fitted to birds-eye-view image:
-![image7](./writeup_images/fit-lanelines-with-poly.png)
+![image7](./output_images/fit-lanelines-with-poly.png)
 
 Polynomial drawn on image using function `draw_poly`:
-![image8](./writeup_images/drawn-poly.png)
+![image8](./output_images/drawn-poly.png)
 
 c.) Lane line area highlighted using function `highlight_lane_line_area`:
 
-![image9](./writeup_images/drawn-poly-colour.png)
+![image9](./output_images/drawn-poly-colour.png)
 
 
 * Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.	Here the idea is to take the measurements of where the lane lines are and estimate how much the road is curving and where the vehicle is located with respect to the center of the lane. The radius of curvature may be given in meters assuming the curve of the road follows a circle. For the position of the vehicle, you may assume the camera is mounted at the center of the car and the deviation of the midpoint of the lane from the center of the image is the offset you're looking for. As with the polynomial fitting, convert from pixels to meters.
