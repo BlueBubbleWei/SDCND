@@ -68,7 +68,7 @@ To apply distortion correction to each image. Example binary images have been in
 ![image1](./output_images/distortion-corrected-calib-image.png)
 2. Example of a distortion-corrected image
 ![image2](./output_images/distortion-corrected-image.png)
-
+---
 * Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.	A method or combination of methods (i.e., color transforms, gradients) has been used to create a binary image containing likely lane pixels. There is no "ground truth" here, just visual verification that the pixels identified as part of the lane lines are, in fact, part of the lines. Example binary images should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION :  To Create a thresholded binary image
@@ -81,7 +81,7 @@ SPECIFICATION :  To Create a thresholded binary image
 6. Example of a thresholded binary image
 ![image3](./output_images/thresholded-binary-image.png)
 
-
+---
 * Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.	OpenCV function or other method has been used to correctly rectify each image to a "birds-eye view". Transformed images should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION : To Apply Perspective transform
@@ -93,7 +93,7 @@ SPECIFICATION : To Apply Perspective transform
 5. Example of a transformed image
 ![image6](./output_images/birds-eye-view-image.png)
 
-
+---
 * Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?	Methods have been used to identify lane line pixels in the rectified binary image. The left and right line have been identified and fit with a curved functional form (e.g., spine or polynomial). Example images with line pixels identified and a fit overplotted should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION : a.) To identify lane-line pixels and fit their positions with a polynomial
@@ -117,14 +117,17 @@ c.) Lane line area highlighted using function `sliding_win_search`:
 
 ![image9](./output_images/drawn-poly-colour.png)
 
-
+---
 * Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.	Here the idea is to take the measurements of where the lane lines are and estimate how much the road is curving and where the vehicle is located with respect to the center of the lane. The radius of curvature may be given in meters assuming the curve of the road follows a circle. For the position of the vehicle, you may assume the camera is mounted at the center of the car and the deviation of the midpoint of the lane from the center of the image is the offset you're looking for. As with the polynomial fitting, convert from pixels to meters.
 
 SPECIFICATION :  To calculate the radius of curvature of the lane and the position of the vehicle with respect to the center
 
- Code: `curverad = ((1 + (2*left_fit[0]*y_eval + left_fit[1])**2)**1.5) /np.absolute(2*left_fit[0])`
-
-
+ Code: 
+ ```
+ curverad = ((1 + (2*fit_cr[0]*y_eval*ym_per_pix + fit_cr[1])**2)**1.5) / np.absolute(2*fit_cr[0])
+ curverad = np.round(curverad, 2)
+```
+---
 * Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.	The fit from the rectified image has been warped back onto the original image and plotted to identify the lane boundaries. This should demonstrate that the lane boundaries were correctly identified. An example image with lanes, curvature, and position from center should be included in the writeup (or saved to a folder) and submitted with the project.
 
 SPECIFICATION : To plot result back down onto tho road such that the lane area is identified clearly.
@@ -168,3 +171,7 @@ white_clip = clip1.fl_image(process_image) #NOTE: this function expects color im
 SPECIFICATION :  
 
 Project pipeline works well with Project video, but it wasn't flawless for challange video  and harder challenge videos. There was false detection of lane line...
+
+---
+END
+---
