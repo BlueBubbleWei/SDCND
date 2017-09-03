@@ -91,9 +91,6 @@ SPECIFICATION : To Apply Perspective transform
 3. Hard-code the source and destination polygon coordinates and obtain the matrix `M` that maps them onto each other using `cv2.getPerspective`.
 4. Warp the image to the new birds-eye-view perspective using `cv2.warpPerspective` and the perspective transform matrix `M` we just obtained.
 5. Example of a transformed image
-Before (masked):
-![image5](./output_images/masked-thresholded-binary-image.png)
-After:
 ![image6](./output_images/birds-eye-view-image.png)
 
 
@@ -152,31 +149,22 @@ I condensed the operations into a single function `image_pipeline` in the ipynb 
 
 Code:
 ```
+# Import everything needed to edit/save/watch video clips
 from moviepy.editor import VideoFileClip
+from IPython.display import HTML
 
-output = 'project_output.mp4'
-clip1 = VideoFileClip("project_video.mp4").subclip(0,5)
-output_clip = clip1.fl_image(image_pipeline)
-%time output_clip.write_videofile(output, audio=False)
+line = Line()
+
+white_output = 'project_video_out.mp4'
+clip1 = VideoFileClip("project_video.mp4")
+white_clip = clip1.fl_image(process_image) #NOTE: this function expects color images!!
+%time white_clip.write_videofile(white_output, audio=False)
+
 ```
 
 
 * Briefly discuss any problems / issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?	Discussion includes some consideration of problems/issues faced, what could be improved about their algorithm/pipeline, and what hypothetical cases would cause their pipeline to fail.
 
-SPECIFICATION :  I added a few checks to eliminate and overwrite implausibly drawn lane lines, which I discuss in the section below.
+SPECIFICATION :  
 
-* Problem 1: Noise interfering with detection of lane lines, resulting in lines with higher curvature being drawn
-    * Instance 1: `test1.jpg`
-        * Solution: increase the minimum threshold for the x gradient from 20 to 40 to filter out noise. (Increasing it to 50 left out parts of the lane.)
-    * Instance 2: `test6.jpg`
-        * Solution: Add a positive horizontal offset so the parts to the far right are not included in the histogram.
-
-* Problem 2: No lane line detected (usually right lane line)
-    * Solution: Relax x gradient and S channel thresholds using a `while` loop that relaxes the thresholds by a tiny amount and then repeats the detection process if no lane line is detected. This allows us to relax the thresholds when no lane line is detected without adding noise to frames where lane lines were detected on the first go (e.g. if we'd just changed the thresholds directly).
-    
-* Problem 3: Overly curvy (or otherwise implausible) lane lines drawn
-    * Solution: Check for two things. If either criteria is not met, replace the lane line for this frame with the previous accepted lane line if it exists. This approximation works because lane lines are continuous and do not change shape quickly.
-        * Criteria 1: Curvature is plausible, i.e. radius of curvature is smaller than 500m. (`plausible_curvature`)
-        * Criteria 2: The lane lines drawn are similar to the previous set of (accepted) lane lines drawn. (`plausible_continuation_of_traces`)
-
-
+Project pipeline works well with Project video, but it wasn't flawless for challange video  and harder challenge videos. There was false detection of lane line...
