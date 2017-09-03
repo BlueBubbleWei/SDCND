@@ -68,7 +68,7 @@ STEP8. Run Pipeline on a video stream and create a heat map of recurring detecti
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
-![alt text][image1]
+![`vehicle` and `non-vehicle` image][image1]
 
 The dataset used contained 2826 cars and 8968 not car images. This dataset is unbalanced. I decided to leave it unbalanced since in the project video not car images far exceed the car images. The code for this step is contained in the code cell 2 of the IPython notebook.
 
@@ -109,7 +109,7 @@ The code for this step is in cell 10 of the IPython notebook.
 
 To implement sliding windows, I narrowed the search area to lower half of the image and searched with different window sizes. Small windows were limited to band 400 pixels to 650 pixels since small cars are more likely to occur farther on the horizon. Below is an example of searching with windows of different sizes.
 
-![alt text][image3] (./output_images/image3.png)
+![Sliding Window Search][image3] (./output_images/image3.png)
 In the sliding window technique, for each window we extract features for that window, scale extracted features to be fed to the classifier, predict whether the window contains a car using our trained Linear SVM classifier and save the window if the classifier predicts there is a car in that window.
 
 For the final model I chose 2 window sizes - [(96,96), (128,128)] and correspoding y_start_stop of [[390, 650], [390, None]]. I found that the performance was improved with x_start_stop=[700, None] since it reduced the search area to the right side lanes. I chose an overlap of 0.7
@@ -120,23 +120,22 @@ For the final model I chose 2 window sizes - [(96,96), (128,128)] and correspodi
 Here are some examples of test images from my classifier. As you can see there are multiple detections and false positives. To smoothen out multiple detections and to remove false positives, I used the technique for generating heatmaps that was suggested in the lectures and set a threshold of 2.
 The code for this step is in cell 14 of the IPython notebook.
 
-![alt text][image4] (./output_images/image4.png)
-![alt text][image5] (./output_images/image5.png)
-![alt text][image6] (./output_images/image6.png)
-![alt text][image7] (./output_images/image7.png)
-![alt text][image8] (./output_images/image8.png)
-![alt text][image9] (./output_images/image9.png)
+![Correct Detection][image4]
+![False Detection][image5] 
+![False Detection][image6] 
+![Correct Detection][image7]
+![Correct Detection][image8] 
+![Correct Detection][image9] 
 
 ---
 
 ### [ 4.] Video Implementation
 
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
 
 SPECIFICATION :  Below is the Link in this writeup for the final output video submitted with the project.
 
-[Video output](./vehicle_detection.mp4)
+[Video output][video1]
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
@@ -148,15 +147,15 @@ Here's an example result showing the heatmap from the last 20 frames of video, t
 
 * Here are six frames and their corresponding heatmaps:
 
-![alt text][image4] (./output_images/image4.png)
-![alt text][image5] (./output_images/image5.png)
-![alt text][image6] (./output_images/image6.png)
-![alt text][image7] (./output_images/image7.png)
-![alt text][image8] (./output_images/image8.png)
-![alt text][image9] (./output_images/image9.png)
+![Correct Detection][image4]
+![False Detection][image5] 
+![False Detection][image6] 
+![Correct Detection][image7]
+![Correct Detection][image8] 
+![Correct Detection][image9] 
 
 * Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image10] (./output_images/image10.png)
+![Last Frame][image10] 
 
 
 
@@ -166,25 +165,8 @@ Here's an example result showing the heatmap from the last 20 frames of video, t
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Two problems that I faced were:
+The test accuracy from the classifier cannot be considered as a acceptable predictor showing the actual performance in the video. Most model combinations had an Good accuracy but only a few had good performance in the video. This was a bit surprising.I suppose there was supposed to more training required for the classifier. As a result the model overfit to the training data. To identify the best model, I tested performance in the video.
 
-I found that the test accuracy in the classifier was not a good predictor of actual performance in the video. Most model combinations had an accuracy of 97%+ but only a few had good performance in the video. This was a bit surprising. I think this is because I didn't put in extra work in making sure that examples in training and testing were distinct. As a result the model overfit to the training data. To identify the best model, I tested performance in the video.
+After video pipeline was working, it was detecting false positives in some frames and not detecting the car in other frames. Careful tuning of num of frames over which windows are added and thresholding parameter were needed. Need to find a method modifying these parameters for different sections of the video.
 
-Once the video pipeline was working, it was detection false positives in some frames and not detecting the car in other frames. Careful tuning of num of frames over which windows are added and thresholding parameter were needed. Ideally there should be a way of modifying these parameters for different sections of the video.
-
-My biggest concern with the approach here is that it relies heavily on tuning the parameters for window size, scale, hog parameters, threshold etc. and those can be camera/track specific. I am afraid that this approach will not be able to generalize to a wide range of situations. And hence I am not very convinced that it can be used in practice for autonomously driving a car.
-
-Here are a few other situations where the pipeline might fail:
-
-I am not sure this model would perform well when it is a heavy traffic situations and there are multiple vehicles. You need something with near perfect accuracy to avoid bumping into other cars or to ensure there are no crashes on a crossing.
-
-The model was slow to run. It took 6-7 minutes to process 1 minute of video. I am not sure this model would work in a real life situation with cars and pedestrians on thr road.
-
-To make the code more robust we can should try the following:
-
-Reduce the effect of time series in training test split so that the model doesn't overfit to training data
-
-Instead of searching for cars in each image independently, we can try and record their last position and search in a specific x,y range only
-
-Modify HOG to extract features for the entire image only once.
-
+To have fine tuning of the parameters for window size, scale, hog parameters, threshold etc. and those can be camera/track specific needs extra experimentation with different algorithms before having it in actual practice of driving autonomous car.
