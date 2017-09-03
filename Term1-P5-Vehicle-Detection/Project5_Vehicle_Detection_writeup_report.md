@@ -15,14 +15,17 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[image1]: ./outout_images/image1.png
+[image2]: ./outout_images/image2.png
+[image3]: ./outout_images/image3.png
+[image4]: ./outout_images/image4.png
+[image5]: ./outout_images/image5.png
+[image6]: ./outout_images/image6.png
+[image7]: ./outout_images/image7.png
+[image8]: ./outout_images/image8.png
+[image9]: ./outout_images/image9.png
+[image10]: ./outout_images/image10.png
+[video1]: ./vehicle_detection.mp4
 
 ---
 ## Rubric Points
@@ -65,7 +68,7 @@ STEP8. Run Pipeline on a video stream and create a heat map of recurring detecti
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
-![alt text][image1] (./output_images/image1.png)
+![alt text][image1]
 
 The dataset used contained 2826 cars and 8968 not car images. This dataset is unbalanced. I decided to leave it unbalanced since in the project video not car images far exceed the car images. The code for this step is contained in the code cell 2 of the IPython notebook.
 
@@ -76,7 +79,7 @@ The code for this step is contained in the code cell 3 and 6 of the IPython note
 Next I looked at HOG features using skimage.hog() functions. The key parameters are 'orientations', 'pixels_per_cell' and 'cells_per_block'. The num of orientations is the number of gradient directions. The pixels_per_cell parameter specifies the cell size over which each gradient histogram is computed. The cells_per_block parameter specifies the local area over which the histogram counts in a given cell will be normalized. To get a feel for the affect of pixels_per_cell and cells_per_block, I looked at hog images with different settings for pixels per cell and cells per block. All the images below are from gray scale. The code for this step is contained in the code cell 4 of the IPython notebook.
 
 
-![alt text][image2] (./output_images/image2.png)
+![alt text][image2]
 
 ---
 * Explain how you settled on your final choice of HOG parameters.
