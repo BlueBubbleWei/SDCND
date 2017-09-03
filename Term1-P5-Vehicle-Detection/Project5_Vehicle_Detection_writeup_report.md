@@ -48,7 +48,7 @@ SPECIFICATION :  My project includes the following files:
 
 #### Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-SPECIFICATION :  I defined the PIPELINE for the project as follows:
+SPECIFICATION :  First I defined the PIPELINE for the project as follows:
 
 STEP1. Load car and not car data from files provided in the resources,Data exploration
 
@@ -87,7 +87,7 @@ Next I looked at HOG features using skimage.hog() functions. The key parameters 
 ---
 #### Explain how you settled on your final choice of HOG parameters.
 
-Below are listed some of parameters which I arrived at after few iterations:
+SPECIFICATION :  Below are listed some of parameters which I arrived at after few iterations:
 
 1. color_space = 'YCrCb' - YCrCb resulted in far better performance than RGB, HSV and HLS
 2. orient = 9 # HOG orientations - I tried 6,9 and 12. Model performance didn't vary much
@@ -100,7 +100,7 @@ Reasonable amount of time was spend to choose these parameters. In the beginning
 ---
 #### Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I followed the steps below for training the classifier
+SPECIFICATION :  I followed the steps below for training the classifier
 
 Format features using np.vstack and StandardScaler().
 Split data into shuffled training and test sets
@@ -111,6 +111,8 @@ The code for this step is in cell 10 of the IPython notebook.
 
 #### Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
+SPECIFICATION : 
+
 To implement sliding windows, I narrowed the search area to lower half of the image and searched with different window sizes. Small windows were limited to band 400 pixels to 650 pixels since small cars are more likely to occur farther on the horizon. Below is an example of searching with windows of different sizes.
 
 ![Sliding Window Search][image3] 
@@ -120,6 +122,8 @@ For the final model I chose 2 window sizes - [(96,96), (128,128)] and correspodi
 
 ---
 #### Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+
+SPECIFICATION : 
 
 Here are some examples of test images from my classifier. As you can see there are multiple detections and false positives. To smoothen out multiple detections and to remove false positives, I used the technique for generating heatmaps that was suggested in the lectures and set a threshold of 2.
 The code for this step is in cell 14 of the IPython notebook.
@@ -141,6 +145,8 @@ SPECIFICATION :  Below is the Link in this writeup for the final output video su
 [Video output][video1]
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+
+SPECIFICATION : 
 
 I recorded the positions of positive detections in each frame of the video. I combined detection over 20 frames (or using the number of frames available if there have been fewer than 20 frames before the current frame). From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions. I found best performance with threshold parameter of 22. I used scipy.ndimage.measurements.label() to identify individual blobs in the heatmap. I then assumed each blob corresponded to a vehicle. I constructed bounding boxes to cover the area of each blob detected.
 
@@ -167,8 +173,16 @@ Here's an example result showing the heatmap from the last 20 frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
+SPECIFICATION : 
+
 The test accuracy from the classifier cannot be considered as a acceptable predictor showing the actual performance in the video. Most model combinations had an Good accuracy but only a few had good performance in the video. This was a bit surprising.I suppose there was supposed to more training required for the classifier. As a result the model overfit to the training data. To identify the best model, I tested performance in the video.
 
 After video pipeline was working, it was detecting false positives in some frames and not detecting the car in other frames. Careful tuning of num of frames over which windows are added and thresholding parameter were needed. Need to find a method modifying these parameters for different sections of the video.
 
 To have fine tuning of the parameters for window size, scale, hog parameters, threshold etc. and those can be camera/track specific needs extra experimentation with different algorithms before having it in actual practice of driving autonomous car.
+
+
+---
+END OF WRITEUP
+---
+
