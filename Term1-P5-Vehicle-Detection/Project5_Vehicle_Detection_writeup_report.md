@@ -33,8 +33,7 @@ SPECIFICATION :  My project includes the following files:
 
 ### [ 2.] Histogram of Oriented Gradients (HOG)
 
-#### Explain how (and identify where in your code) you extracted HOG features from the training images.
-Explain how you settled on your final choice of HOG parameters.
+#### Explain how (and identify where in your code) you extracted HOG features from the training images.Explain how you settled on your final choice of HOG parameters.
 
 
 SPECIFICATION : 
@@ -71,8 +70,6 @@ The steps of this project are the following:
 [image10]: ./output_images/heatmaps6.png
 [image11]: ./output_images/output_bboxes.png
 [video1]: ./vehicle_detection.mp4
-
-## Histogram of Oriented Gradients (HOG)
 
 ### HOG features extraction
 
@@ -265,8 +262,7 @@ Once we knew the whole area where a vehicle could be likely found, it was requir
 
 SPECIFICATION : 
 
-Here are some examples of test images from my classifier. As you can see there are multiple detections and false positives. To smoothen out multiple detections and to remove false positives, I used the technique for generating heatmaps that was suggested in the lectures and set a threshold of 2.
-The code for this step is in cell 14 of the IPython notebook.
+Here are some examples of test images from my classifier. As you can see there are multiple detections and false positives. To smoothen out multiple detections and to remove false positives, I used the technique for generating heatmaps that was suggested in the lectures.
 
 ![alt text][image5]
 
@@ -348,21 +344,11 @@ return draw_image
 
 SPECIFICATION : 
 
-After testing the pipeline several times, it could be said that the model works fine in standard conditions. In general, the key point was related to choose a good set of parameters for the feature extraction. The SVM model performed well in any case but the images processing was really important.
+After testing the pipeline several times, it could be said that the model works fine in standard conditions. In general, the key point was related to choose a good set of parameters for the feature extraction. The SVM model performed well in any case but the images processing was really important.The quality of the video is quite good so that the model predicts correctly the majority of the time. Probably in other scenarios with worse weather or light conditions, the model wouldn't be able to detect vehicles in the same way as it does.
 
-The quality of the video is quite good so that the model predicts correctly the majority of the time. Probably in other scenarios with worse weather or light conditions, the model wouldn't be able to detect vehicles in the same way as it does.
+In a real-world environment more advanced techniques should be applied but at the end the concepts of extracting features applying transformations and HOG should be also present.We could also say that in order to create a more robust system it would be necessary to have a larger and more complex datasets with different vehicle models, roads, light and weather conditions, etc.
 
-In a real-world environment more advanced techniques should be applied but at the end the concepts of extracting features applying transformations and HOG should be also present.
-We could also say that in order to create a more robust system it would be necessary to have a larger and more complex datasets with different vehicle models, roads, light and weather conditions, etc.
-
-However it's really impressive how designing a computer-vision-techniques based pipeline and training a "not-too-complicated" classification model, we were able to build a complete system that detects real cars in real videos from a camera.
-
-Some ways to improve the current model could be:
-
-- Configure more advanced windows-layers.
-- Design and train more sophisticated models.
-- Think about a more advanced vehicle tracking algorithm once a vehicle has been properly detected and avoid blind searching on each frame.
-- Set smarter thresholds to avoid detecting false positives.
+Some ways to improve the current model could be to Configure more advanced windows-layers, or design and train more sophisticated models. Think about a more advanced vehicle tracking algorithm once a vehicle has been properly detected and avoid blind searching on each frame. Also would be to set smarter thresholds to avoid detecting false positives.
 
 ---
 END OF WRITEUP
