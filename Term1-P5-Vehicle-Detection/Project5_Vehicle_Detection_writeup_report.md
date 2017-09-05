@@ -88,6 +88,8 @@ To introduce some results, in the following image it can be seen an example usin
 
 ![alt text][image2]
 
+![alt text][image3]
+
 ```python
 cspace = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
 orient = 9
@@ -241,7 +243,6 @@ Medium windows of 128 by 128 from pixel 400 to pixel 656 in the Y coordinate.
 Small windows of 96 by 96 from pixel 400 to pixel 500 in the Y coordinate. The X range was restricted to stop the process performance being worse.
 X-Small windows of 48 by 48 from pixel 400 to pixel 500 in the Y coordinate. The X range was also restricted in this case.
 
-![alt text][image3]
 
 At the end of this process, we had several matched boxes where vehicles should hopefully appear. Taking all windows, we also created heatmaps generating new arrays with ones in the pixels where a vehicle was detected. Having these heatmaps and applying the ```scipy.ndimage.measurements.label()``` method we were able to define the final rectangles from all matching boxes.
 
