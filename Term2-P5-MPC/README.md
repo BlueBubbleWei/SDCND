@@ -6,7 +6,73 @@
 ## SIMULATOR OUTPUT OF MPCPROJECT
 
 ---
+## Introduction
 
+This projects implements the Model Predictive Controls using vehicle kinematics motion models. To control vehicle it takes initial vehicle position and heading direction from simulator and based on motion models it predicts future position and required controls to acehive that position.
+
+## Vehicle Kinematics Model
+
+ The state, actuators and how the state changes over time based on the previous state and current actuator inputs is given by below equations:
+ 
+xt+1 = xt+vt∗cos(ψt)∗dt
+
+yt+1 = yt+vt∗sin(ψt)∗dt
+
+ψt+1 = ψt+Lf/vt∗δt∗dt
+
+vt+1 = vt+at∗dt
+
+Where:
+
+* xt - xt is the global map coordinate x of the current location of the vehicle
+* yt - yt is the global map coordinate y of the current location of the vehicle
+* ψt - the current heading angle/ direction heading of the vehicle
+* vt - the current speed/ velocity of the vehicle.
+
+To check the difference between current vehicle position and desired vehicle position we have defined two errors 1) Cross Track Errors and 2) Orientation Error
+
+1) Cross Track Errors(CTE)
+We can express CTE, the error between the center of the road and the vehicle's position as the cross track error:
+
+cte(t+1) = cte(t)+vt∗sin(eψt)∗dt
+
+In this case cte(t) can be expressed as the difference between the line and the current vehicle position y. Assuming the reference line is a 1st order polynomial f:
+
+cte(t) =f(xt)−yt
+
+If we substitute cte(t)back into the original equation the result is:
+
+cte(t+1) = f(xt)−yt+(vt∗sin(eψt)∗dt)
+
+2) Orientation Error
+
+Oriantation error is modelled as 
+eψ(t+1) = ψt−ψdest+(vt/Lf∗δt∗dt)
+
+## Length and Duration
+The prediction horizon is the duration over which future predictions are made. We have deifed it as T. T is the product of two other variables, N and dt.
+N is the number of timesteps in the horizon. dt is how much time elapses between actuations. For example, if N were 20 and dt were 0.5, then T would be 10 seconds.
+
+For our model based on number of iterations and optimization N value is 10 and  dt is 0.1.
+
+## Fitting Polynomials
+The reference trajectory is typically passed to the control block as a polynomial. This polynomial is usually 3rd order, since third order polynomials will fit trajectories for most roads. To fit 3rd order polynomials to waypoints (x, y), we have used 'polyfit' to fit a 3rd order polynomial to the given x and y coordinates representing waypoints and 'polyeval' to evaluate y values of given x coordinates.
+
+## Model Predictive Control with Latency
+In a real car, an actuation command won't execute instantly - there will be a delay as the command propagates through the system. A realistic delay might be on the order of 100 milliseconds.
+
+This is a problem called "latency", and it's a difficult challenge for some controllers - like a PID controller - to overcome. But a Model Predictive Controller can adapt quite well because we can model this latency in the system.
+We have considered Latency 0.1 i.e. prediction 100 ms in future. and it is implemented in main.cpp as given below:
+
+```         state[0] = v*cos(0)*latency;
+            state[1] = v*sin(0)*latency;
+            state[2] = (-v*steer_value*latency/Lf);
+            state[3] = v + throttle_value*latency;
+            state[4] = cte + v*sin(epsi)*latency;
+            state[5] = epsi - (v/Lf)*steer_value*latency;
+```
+
+---
 ## Dependencies
 
 * cmake >= 3.5
