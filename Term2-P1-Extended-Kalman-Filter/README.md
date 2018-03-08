@@ -1,5 +1,6 @@
 # Extended Kalman Filter Project Starter Code
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
 [image1]: ./images/Term2-P1-Extended-Kalman-Filter.gif "EKF Result"
 ![alt text][image1] 
 
