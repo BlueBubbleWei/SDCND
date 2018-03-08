@@ -22,7 +22,7 @@ In this term, you'll become an expert in applying Computer Vision and Deep Learn
 * Project 4: Advanced Lane Lines (Computer Vision): Use of image thresholding, warping and fitting lanes lines to develop a more robust method of detecting lane lines on a road
 * Project 5: Vehicle Detection (Computer Vision): Use of HOG and SVM to detect vehicles on a road
 
-## PART 2 [Term2] (Not Started Yet)
+## PART 2 [Term2] (Started Nov 2017)
 Sensor Fusion, Localisation and Control 
 
 In this term, you'll learn how to use an array of sensor data to perceive the environment and control the vehicle. You'll evaluate sensor data from camera, radar, lidar, and GPS, and use these in closed-loop controllers that actuate the vehicle.
@@ -38,6 +38,12 @@ In this term, you'll learn how to use an array of sensor data to perceive the en
 
 - Fundamental concepts of robotic control.
 - Build algorithms to steer car and wheels so as to meet an objective.
+
+* Project 1: Extended Kalman Filter
+* Project 2: Unscented Kalman Filter
+* Project 3: Kidnapped Vehicle
+* Project 4: PID Control 
+* Project 5: MPC [Model Predictive Control]
 
 ## PART 3 [Term3] (Not Started Yet)
 Path Planning, Concentrations, and Systems
