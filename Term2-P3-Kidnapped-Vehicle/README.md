@@ -1,3 +1,10 @@
+# Kidnapped Vehicle Project
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
+[image1]: ./images/Term2-P3-Kidnapped-Vehicle.gif "KV Result"
+![alt text][image1] 
+## SIMULATOR OUTPUT OF KIDNAPPED VEHICLE PROJECT
+
 # Overview
 This repository contains all the code needed to complete the final project for the Localization course in Udacity's Self-Driving Car Nanodegree.
 
