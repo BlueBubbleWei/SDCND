@@ -3,9 +3,9 @@
 
 [image1]: ./images/Term2-P5-MPC.gif "MPC Result"
 ![alt text][image1] 
-## SIMULATOR OUTPUT OF MPCPROJECT
-
+## SIMULATOR OUTPUT OF MPC PROJECT
 ---
+
 ## Introduction
 
 This projects implements the Model Predictive Controls using vehicle kinematics motion models. To control vehicle it takes initial vehicle position and heading direction from simulator and based on motion models it predicts future position and required controls to acehive that position.
