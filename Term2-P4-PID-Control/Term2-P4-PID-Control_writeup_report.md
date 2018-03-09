@@ -71,7 +71,7 @@ The final values are:
 CRITERIA
 The vehicle must successfully drive a lap around the track.
 No tire leaves the drivable portion of the track surface. The car does not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
-You can observe the result in this [images](./Term2-P4-PID.gif).
+You can observe the result in this [images](https://github.com/deepak-mane/SDCND/blob/master/Term2-P4-PID-Control/images/Term2-P4-PID.gif).
 
 ---
 END OF WRITEUP
