@@ -1,3 +1,0 @@
-/Users/deepakmane/GHFiles/deepak-mane/SDCND/Term2-P4-PID-Control/build/CMakeFiles/rebuild_cache.dir
-/Users/deepakmane/GHFiles/deepak-mane/SDCND/Term2-P4-PID-Control/build/CMakeFiles/edit_cache.dir
-/Users/deepakmane/GHFiles/deepak-mane/SDCND/Term2-P4-PID-Control/build/CMakeFiles/pid.dir
