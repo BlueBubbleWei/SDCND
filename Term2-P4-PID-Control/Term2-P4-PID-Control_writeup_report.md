@@ -33,7 +33,7 @@ The I-Controller outputs the integral of the error. This is useful to take syste
 CRITERIA : Code compiles without errors with cmake and make.
 Given that we've made CMakeLists.txt as general as possible, it's recommend that you do not change it unless you can guarantee that your changes will still compile on any platform.
 
-#### Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is reference template writeup used from other project as a starting point.  
 
 SPECIFICATION :  My project includes the following files:
 * `Term2-P4-PID-Control_writeup_report.md`:- This is the writeup which is submitted for this project.
